@@ -10,6 +10,16 @@ const tableBody = document.getElementById('table-body');
 const formTitle = document.getElementById('form-title');
 const submitBtn = document.getElementById('submit-btn');
 
+// --- CREATE ---
+async function addAttendance(student, date, status) {
+  await db.collection('asistencias').add({
+    student,
+    date,
+    status,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  });
+}
+
 // Captura el submit del formulario y extrae los valores
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
