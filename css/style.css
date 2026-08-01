@@ -155,3 +155,36 @@ button[type="submit"]:hover {
 .btn-delete:hover {
   background-color: #c0392b;
 }
+
+/* --- Responsive (Hotfix) --- */
+@media (max-width: 600px) {
+  header {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  main {
+    margin: 1rem auto;
+    padding: 0 0.5rem;
+  }
+  
+  .table-section {
+    overflow-x: auto;
+  }
+  
+  #attendance-table th,
+  #attendance-table td {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+  
+  .btn-edit, .btn-delete {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .btn-delete {
+    margin-left: 0;
+  }
+}
