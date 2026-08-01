@@ -23,6 +23,25 @@ async function addAttendance(student, date, status) {
   });
 }
 
+// --- UPDATE ---
+async function updateAttendance(id, student, date, status) {
+  await db.collection('asistencias').doc(id).update({
+    student,
+    date,
+    status
+  });
+}
+
+function loadForEdit(id, student, date, status) {
+  currentEditId = id;
+  studentInput.value = student;
+  dateInput.value = date;
+  statusInput.value = status;
+  
+  formTitle.textContent = "Editar Registro";
+  submitBtn.textContent = "Actualizar Registro";
+}
+
 // Captura el submit del formulario y extrae los valores
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -31,7 +50,15 @@ form.addEventListener('submit', async (e) => {
   const date = dateInput.value;
   const status = statusInput.value;
 
-  await addAttendance(student, date, status);
+  if (currentEditId) {
+    await updateAttendance(currentEditId, student, date, status);
+    currentEditId = null;
+    formTitle.textContent = "Nuevo Registro";
+    submitBtn.textContent = "Guardar Registro";
+  } else {
+    await addAttendance(student, date, status);
+  }
+  
   form.reset();
 });
 
