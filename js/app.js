@@ -31,3 +31,23 @@ form.addEventListener('submit', async (e) => {
   await addAttendance(student, date, status);
   form.reset();
 });
+
+// --- READ ---
+function renderRow(doc) {
+  const { student, date, status } = doc.data();
+  return `
+    <tr data-id="${doc.id}">
+      <td>${student}</td>
+      <td>${date}</td>
+      <td>${status}</td>
+      <td></td>
+    </tr>
+  `;
+}
+
+// Escucha cambios en la colección en tiempo real y re-renderiza la tabla
+db.collection('asistencias')
+  .orderBy('createdAt', 'desc')
+  .onSnapshot((snapshot) => {
+    tableBody.innerHTML = snapshot.docs.map(renderRow).join('');
+  });
