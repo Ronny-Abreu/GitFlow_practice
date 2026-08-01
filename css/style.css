@@ -124,3 +124,18 @@ button[type="submit"]:hover {
 #attendance-table tbody tr:hover {
   background-color: #f1f3f5;
 }
+
+.btn-edit {
+  padding: 0.4rem 0.8rem;
+  background-color: #f39c12;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-edit:hover {
+  background-color: #e67e22;
+}
