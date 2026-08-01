@@ -42,6 +42,13 @@ function loadForEdit(id, student, date, status) {
   submitBtn.textContent = "Actualizar Registro";
 }
 
+// --- DELETE ---
+async function deleteAttendance(id) {
+  if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
+    await db.collection('asistencias').doc(id).delete();
+  }
+}
+
 // Captura el submit del formulario y extrae los valores
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -72,6 +79,7 @@ function renderRow(doc) {
       <td>${status}</td>
       <td>
         <button class="btn-edit" onclick="loadForEdit('${doc.id}', '${student}', '${date}', '${status}')">Editar</button>
+        <button class="btn-delete" onclick="deleteAttendance('${doc.id}')">Eliminar</button>
       </td>
     </tr>
   `;
