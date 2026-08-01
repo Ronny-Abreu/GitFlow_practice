@@ -10,6 +10,9 @@ const tableBody = document.getElementById('table-body');
 const formTitle = document.getElementById('form-title');
 const submitBtn = document.getElementById('submit-btn');
 
+// Guarda el id del documento en edición; null = modo creación
+let currentEditId = null;
+
 // --- CREATE ---
 async function addAttendance(student, date, status) {
   await db.collection('asistencias').add({
@@ -40,7 +43,9 @@ function renderRow(doc) {
       <td>${student}</td>
       <td>${date}</td>
       <td>${status}</td>
-      <td></td>
+      <td>
+        <button class="btn-edit" onclick="loadForEdit('${doc.id}', '${student}', '${date}', '${status}')">Editar</button>
+      </td>
     </tr>
   `;
 }
